@@ -1,6 +1,6 @@
 <%-- 
-    Document   : login
-    Created on : Nov 8, 2016, 3:54:05 PM
+    Document   : register
+    Created on : Nov 8, 2016, 4:02:00 PM
     Author     : duy tung dao
 --%>
 
@@ -9,23 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>login</title>
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
-<!-- Custom Theme files -->
-<!--theme-style-->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
-<!--//theme-style-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Bonfire Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--fonts-->
-<link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
-<!--//fonts-->
-<script type="text/javascript" src="js/move-top.js"></script>
+        <title>register</title>
 <script type="text/javascript" src="js/easing.js"></script>
 				<script type="text/javascript">
 					jQuery(document).ready(function($) {
@@ -67,22 +51,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </head>
     <body>
         <jsp:include page="header.jsp"></jsp:include>
-        <div class="container">
-		<div class="account">
-			<h2 class="account-in">login</h2>
-				<form>
-				<div>
-					<span>First Name*</span>
-					<input type="text">
-				</div>
-				<div> 
-					<span class="word">Password*</span>
-					<input type="password">
-				</div>				
-					<input type="submit" value="Login"> 
+        <section id="form"><!--form-->
+            <div class="container">				
+		<div class="row">
+                    <div class="col-sm-4 col-sm-offset-1">
+			<div class="login-form"><!--login form-->
+                            <h2>Login to your account</h2>
+				<form action="#">
+                                    <input type="text" placeholder="Name" />
+                                    <input type="email" placeholder="Email Address" />
+                                    <span>
+					<input type="checkbox" class="checkbox"> 
+					Keep me signed in
+                                    </span>
+                                    <button type="submit" class="btn btn-default">Login</button>
 				</form>
+			</div><!--/login form-->
+                    </div>
+			<div class="col-sm-1">
+			<h2 class="or">OR</h2>
+                    </div>
+                    <div class="col-sm-4">
+			<div class="signup-form"><!--sign up form-->
+			<h2>New User Signup!</h2>
+			<form action="#">
+                            <input type="text" placeholder="Name"/>
+				<input type="email" placeholder="Email Address"/>
+				<input type="password" placeholder="Password"/>
+				<button type="submit" class="btn btn-default">Signup</button>
+			</form>
+				</div><!--/sign up form-->
+                    </div>
 		</div>
-	</div>
+            </div>
+	</section><!--/form-->
         <jsp:include page="footer.jsp"></jsp:include>
     </body>
 </html>

@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>register</title>
+        <title>Login</title>
 <script type="text/javascript" src="js/easing.js"></script>
 				<script type="text/javascript">
 					jQuery(document).ready(function($) {
@@ -57,30 +57,18 @@
                     <div class="col-sm-4 col-sm-offset-1">
 			<div class="login-form"><!--login form-->
                             <h2>Login to your account</h2>
-				<form action="#">
-                                    <input type="text" placeholder="Name" />
-                                    <input type="email" placeholder="Email Address" />
-                                    <span>
-					<input type="checkbox" class="checkbox"> 
-					Keep me signed in
-                                    </span>
-                                    <button type="submit" class="btn btn-default">Login</button>
+				<form action="UsersServlet" method="POST">
+                                    <% if(request.getParameter("error")!=null){ %>
+                                    <div>
+                                        <p style="color:red"><%=request.getParameter("error")%></p>
+                                    </div>
+                                    <%}%>
+                                    <input type="text" placeholder="User Name" name="email"/>
+                                    <input type="password" placeholder="Password" name="pass"/>
+                                    <button type="submit" class="btn btn-default" value="Login" name="command">Đăng nhập</button>
+                                    <a href="register.jsp">Đăng ký</a>
 				</form>
 			</div><!--/login form-->
-                    </div>
-			<div class="col-sm-1">
-			<h2 class="or">OR</h2>
-                    </div>
-                    <div class="col-sm-4">
-			<div class="signup-form"><!--sign up form-->
-			<h2>New User Signup!</h2>
-			<form action="#">
-                            <input type="text" placeholder="Name"/>
-				<input type="email" placeholder="Email Address"/>
-				<input type="password" placeholder="Password"/>
-				<button type="submit" class="btn btn-default">Signup</button>
-			</form>
-				</div><!--/sign up form-->
                     </div>
 		</div>
             </div>

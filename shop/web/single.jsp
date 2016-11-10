@@ -40,19 +40,19 @@
 								  <!-- Wrapper for slides -->
 								    <div class="carousel-inner">
 										<div class="item active">
-										  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
+										  <a href=""><img src="<%= product.getProductImage2()%>" height="42" width="42" alt=<%= product.getProductImage2()%></a>
+										  <a href=""><img src="<%= product.getProductImage3()%>" height="42" width="42" alt=<%= product.getProductImage3()%></a>
+										  <a href=""><img src="<%= product.getProductImage4()%>" height="42" width="42" alt=<%= product.getProductImage4()%></a>
 										</div>
 										<div class="item">
-										  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
+										  <a href=""><img src="<%= product.getProductImage2()%>" height="42" width="42" alt=<%= product.getProductImage2()%></a>
+										  <a href=""><img src="<%= product.getProductImage3()%>" height="42" width="42" alt=<%= product.getProductImage3()%></a>
+										  <a href=""><img src="<%= product.getProductImage4()%>" height="42" width="42" alt=<%= product.getProductImage4()%></a>
 										</div>
 										<div class="item">
-										  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
+										  <a href=""><img src="<%= product.getProductImage2()%>" height="42" width="42" alt=<%= product.getProductImage2()%></a>
+										  <a href=""><img src="<%= product.getProductImage3()%>" height="42" width="42" alt=<%= product.getProductImage3()%></a>
+										  <a href=""><img src="<%= product.getProductImage4()%>"  height="42" width="42" alt=<%= product.getProductImage4()%></a>
 										</div>
 										
 									</div>
@@ -77,10 +77,8 @@
 									<span><%= product.getProductPrice()%></span>
 									<label>Quantity:</label>
 									<input type="text" value="3" />
-									<button type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Thêm vào giỏ hàng
-									</button>
+                                                                        <a href="CartServlet?command=plus&productID=<%=product.getProductID()%>" class="btn btn-fefault cart add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+								
 								</span>
 								<p><b>Tình trạng:</b> Còn hàng</p>
 								<p><b>Loại hàng:</b> Mới</p>
@@ -94,21 +92,22 @@
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
 								<li><a href="#details" data-toggle="tab">Chi tiết</a></li>
-								<li><a href="#companyprofile" data-toggle="tab">Thông tin công ty</a></li>
-								<li><a href="#tag" data-toggle="tab">Thẻ</a></li>
-								<li class="active"><a href="#reviews" data-toggle="tab">Đánh giá (5)</a></li>
+								<li class="active"><a href="#reviews" data-toggle="tab">Đánh giá</a></li>
 							</ul>
 						</div>
-						<!--div class="tab-content">
+						<div class="tab-content">
 							<div class="tab-pane fade" id="details" >
+                                                            <div class="col-sm-12">
+                                                                <p><%= product.getProductDescription()%></p>
+                                                            </div>
 								<div class="col-sm-3">
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery1.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+												<img src=<%= product.getProductImage()%> alt="" />
+												<h2><%= product.getProductPrice()%> VNĐ</h2>
+												<p><%= product.getProductName()%></p>
+												<a href="CartServlet?command=plus&productID=<%=product.getProductID()%>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 										</div>
 									</div>
@@ -117,34 +116,34 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery2.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+												<img src=<%= product.getProductImage2()%> alt="" />
+												<h2><%= product.getProductPrice()%> VNĐ</h2>
+												<p><%= product.getProductName()%></p>
+												<a href="CartServlet?command=plus&productID=<%=product.getProductID()%>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-3">
+                                                                                        <div class="col-sm-3">
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery3.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+												<img src=<%= product.getProductImage3()%> alt="" />
+												<h2><%= product.getProductPrice()%> VNĐ</h2>
+												<p><%= product.getProductName()%></p>
+												<a href="CartServlet?command=plus&productID=<%=product.getProductID()%>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-3">
+                                                                                        <div class="col-sm-3">
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery4.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+												<img src=<%= product.getProductImage4()%> alt="" />
+												<h2><%= product.getProductPrice()%> VNĐ</h2>
+												<p><%= product.getProductName()%></p>
+												<a href="CartServlet?command=plus&productID=<%=product.getProductID()%>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 										</div>
 									</div>

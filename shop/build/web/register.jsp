@@ -10,81 +10,61 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>register</title>
-<script type="text/javascript" src="js/easing.js"></script>
-				<script type="text/javascript">
-					jQuery(document).ready(function($) {
-						$(".scroll").click(function(event){		
-							event.preventDefault();
-							$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-						});
-					});
-				</script>
-<!--slider-script-->
-		<script src="js/responsiveslides.min.js"></script>
-			<script>
-				$(function () {
-				  $("#slider1").responsiveSlides({
-					auto: true,
-					speed: 500,
-					namespace: "callbacks",
-					pager: true,
-				  });
-				});
-			</script>
-<!--//slider-script-->
-<script>$(document).ready(function(c) {
-	$('.alert-close').on('click', function(c){
-		$('.message').fadeOut('slow', function(c){
-	  		$('.message').remove();
-		});
-	});	  
-});
-</script>
-<script>$(document).ready(function(c) {
-	$('.alert-close1').on('click', function(c){
-		$('.message1').fadeOut('slow', function(c){
-	  		$('.message1').remove();
-		});
-	});	  
-});
-</script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var x_timer;
+                $("#email").keyup(function (e) {
+                    clearTimeout(x_timer);
+                    var user_name = $(this).val();
+                    x_timer = setTimeout(function () {
+                        check_username_ajax(user_name);
+                    }, 1000);
+                });
+ 
+                function check_username_ajax(username) {
+                $("#user-result").html('<img src="img/ajax-loader.gif" />');
+                $.post('CheckEmailServlet', {'username': username}, function (data) {
+                    $("#user-result").html(data);
+                 });
+                }
+                $('#pass1, #pass2').on('keyup', function () {
+                if ($('#pass1').val() == $('#pass2').val()&&$('#pass1').val()!='') {
+                    $('#message').html('Matched').css('color', 'green');
+                    document.getElementById("RegisterButton").disabled= false;
+                } else{
+                    $('#message').html('Not Matching').css('color', 'red');
+                    document.getElementById("RegisterButton").disabled= true;
+                }
+                });
+            });
+        </script>
     </head>
     <body>
         <jsp:include page="header.jsp"></jsp:include>
-        <section id="form"><!--form-->
-            <div class="container">				
-		<div class="row">
-                    <div class="col-sm-4 col-sm-offset-1">
-			<div class="login-form"><!--login form-->
-                            <h2>Login to your account</h2>
-				<form action="#">
-                                    <input type="text" placeholder="Name" />
-                                    <input type="email" placeholder="Email Address" />
-                                    <span>
-					<input type="checkbox" class="checkbox"> 
-					Keep me signed in
-                                    </span>
-                                    <button type="submit" class="btn btn-default">Login</button>
-				</form>
-			</div><!--/login form-->
-                    </div>
-			<div class="col-sm-1">
-			<h2 class="or">OR</h2>
-                    </div>
-                    <div class="col-sm-4">
-			<div class="signup-form"><!--sign up form-->
-			<h2>New User Signup!</h2>
-			<form action="#">
-                            <input type="text" placeholder="Name"/>
-				<input type="email" placeholder="Email Address"/>
-				<input type="password" placeholder="Password"/>
-				<button type="submit" class="btn btn-default">Signup</button>
+        <div class="container">
+		<div class="account">
+			<h2 class="account-in">Register</h2>
+                        <form action="UsersServlet" method="POST">
+				<div>
+					<span class="word">Email address*</span>
+					<input type="text" name="email" id="email">
+                                        <span id="user-result"></span>
+				</div>
+				<div> 
+					<span class="word">Password*</span>
+					<input type="password" name="pass" id="pass1">
+				</div>		
+                                <div> 
+					<span class="word">Confirm*</span>
+					<input type="password" name="pass2" id="pass2">
+                                        <span id='message'></span>
+				</div>
+                                
+                                <input type="submit" value="Register" name="command" disabled="true" id="RegisterButton"> 
 			</form>
-				</div><!--/sign up form-->
-                    </div>
 		</div>
-            </div>
-	</section><!--/form-->
+	</div>
         <jsp:include page="footer.jsp"></jsp:include>
     </body>
 </html>

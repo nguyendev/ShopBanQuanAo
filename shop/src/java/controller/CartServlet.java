@@ -46,7 +46,8 @@ public class CartServlet extends HttpServlet {
             switch(command){
                 case "plus":
                     if(cart.getCartItems().containsKey(productid)){
-                        cart.plusToCart(productid, new Item(product, cart.getCartItems().get(productid).getQuantity()));
+                        cart.plusToCart(productid, new Item(product, 
+                                cart.getCartItems().get(productid).getQuantity()));
                     }
                     else{
                         cart.plusToCart(productid, new Item(product,1));

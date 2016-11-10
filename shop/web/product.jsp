@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Product</title>
+        <title>Danh mục sản phẩm</title>
     </head>
     <body>
         <jsp:include page="header.jsp"></jsp:include>

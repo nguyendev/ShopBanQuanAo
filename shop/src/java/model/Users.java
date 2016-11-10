@@ -24,6 +24,38 @@ public class Users {
         this.userPass = userPass;
         this.userRole = userRole;
     }
+
+    public long getUserID() {
+        return userID;
+    }
+
+    public void setUserID(long userID) {
+        this.userID = userID;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getUserPass() {
+        return userPass;
+    }
+
+    public void setUserPass(String userPass) {
+        this.userPass = userPass;
+    }
+    
+    public boolean getUserRole(){
+        return userRole;
+    }
+    public void setUserRole(boolean userRole) {
+        this.userRole = userRole;
+    }
+    
     
 }
     

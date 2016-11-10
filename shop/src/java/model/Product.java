@@ -14,17 +14,47 @@ public class Product {
     private long categoryID;
     private String productName;
     private String productImage;
+    private String productImage2;
+    private String productImage3;
+
+    public String getProductImage2() {
+        return productImage2;
+    }
+
+    public void setProductImage2(String productImage2) {
+        this.productImage2 = productImage2;
+    }
+
+    public String getProductImage3() {
+        return productImage3;
+    }
+
+    public void setProductImage3(String productImage3) {
+        this.productImage3 = productImage3;
+    }
+
+    public String getProductImage4() {
+        return productImage4;
+    }
+
+    public void setProductImage4(String productImage4) {
+        this.productImage4 = productImage4;
+    }
+    private String productImage4;
     private double productPrice;
     private String productDescription;
 
     public Product() {
     }
 
-    public Product(long productID, long categoryID, String productName, String productImage, double productPrice, String productDescription) {
+    public Product(long productID, long categoryID, String productName,  String productImage2, String productImage3, String productImage4, double productPrice, String productDescription) {
         this.productID = productID;
         this.categoryID = categoryID;
         this.productName = productName;
         this.productImage = productImage;
+        this.productImage2 = productImage2;
+        this.productImage3 = productImage3;
+        this.productImage4 = productImage4;
         this.productPrice = productPrice;
         this.productDescription = productDescription;
     }

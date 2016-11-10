@@ -32,6 +32,9 @@ public class ProductDAO {
          product.setProductDescription(rs.getString("product_description"));
          product.setProductPrice(rs.getDouble("product_price"));
          product.setProductImage(rs.getString("product_image"));
+         product.setProductImage2(rs.getString("product_image2"));
+         product.setProductImage3(rs.getString("product_image3"));
+         product.setProductImage4(rs.getString("product_image4"));
          list.add(product);
          
         }
@@ -50,7 +53,31 @@ public class ProductDAO {
          product.setProductDescription(rs.getString("product_description"));
          product.setProductPrice(rs.getDouble("product_price"));
          product.setProductImage(rs.getString("product_image"));
+         product.setProductImage2(rs.getString("product_image2"));
+         product.setProductImage3(rs.getString("product_image3"));
+         product.setProductImage4(rs.getString("product_image4"));
         }
         return product;       
+    }
+    public ArrayList<Product> getListProduct() throws SQLException{
+            Connection connection =  DBConnect.getConnecttion();
+        String sql = "SELECT * FROM product";
+        PreparedStatement ps = connection.prepareCall (sql);
+        ResultSet rs = ps.executeQuery();
+        ArrayList<Product> list = new ArrayList<>();
+        while (rs.next()){
+         Product product = new Product();
+         product.setProductID(rs.getLong("product_id"));
+         product.setProductName(rs.getString("product_name"));
+         product.setProductDescription(rs.getString("product_description"));
+         product.setProductPrice(rs.getDouble("product_price"));
+         product.setProductImage(rs.getString("product_image"));
+         product.setProductImage2(rs.getString("product_image2"));
+         product.setProductImage3(rs.getString("product_image3"));
+         product.setProductImage4(rs.getString("product_image4"));
+         list.add(product);
+         
+        }
+        return list;
     }
 }

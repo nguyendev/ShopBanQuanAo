@@ -34,13 +34,13 @@ public class Cart {
     
     //insert to cart
     public void plusToCart(Long key, Item item) {
-       boolean bln = cartItems.containsKey(key);
-       if (bln) {
+       boolean check = cartItems.containsKey(key);
+       if (check) {
             int quantity_old = item.getQuantity();
             item.setQuantity(quantity_old + 1);
-            cartItems.put(item.getProduct().getProductID(), item);
+            cartItems.put(key, item);
        } else {
-            cartItems.put(item.getProduct().getProductID(), item);
+            cartItems.put(key, item);
        }
     }
     
@@ -62,8 +62,8 @@ public class Cart {
     
     //remove to cart
     public void removeToCart(Long product) {
-            boolean bln = cartItems.containsKey(product);
-            if (bln) {
+            boolean check = cartItems.containsKey(product);
+            if (check) {
                 cartItems.remove(product);
             }
     }

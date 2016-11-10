@@ -4,6 +4,8 @@
     Author     : duy tung dao
 --%>
 
+<%@page import="java.util.Map"%>
+<%@page import="model.Item"%>
 <%@page import="model.Cart"%>
 <%@page import="model.Users"%>
 <%@page import="model.Category"%>
@@ -15,7 +17,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>header</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
     <link href="css/price-range.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
@@ -40,6 +42,11 @@
                users = (Users) session.getAttribute ("user") ;
                
             } 
+            Cart cart = (Cart)session.getAttribute("cart");
+                       if (cart == null){
+                           cart = new Cart();
+                           session.setAttribute("cart", cart);
+                       }
         %>
         
 	<div class="header_top"><!--header_top-->
@@ -48,8 +55,8 @@
 					<div class="col-sm-6">
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
-								<li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i> +0968 784 717</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> banhangdacap@gmail.com</a></li>
 							</ul>
 						</div>
 					</div>
@@ -73,7 +80,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+							<a href="index.jsp"><img src="images/home/logo.png" alt="" /></a>
 						</div>
 						<div class="btn-group pull-right">
 							<div class="btn-group">
@@ -100,12 +107,16 @@
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
-							<ul class="nav navbar-nav">
-								<li><a href="#"><i class="fa fa-user"></i> Tài khoản</a></li>
-								<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Giỏ hàng</a></li>
-								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-								<li><a href="login.html"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+							<ul class="nav navbar-nav collapse navbar-collapse">
+										
+                                                            <li><a href="cart.jsp"><i class="fa fa-star"></i> Giỏ hàng <span  style="color:red"> <b><%=cart.countItem()%></b></span></a></li>
+                                                            <!--%if(users!=null){%>
+                                                                    <!--li><a href=""><users.getUserEmail()%></a>
+                                                                    </li>
+                                                                < else{%>
+                                                                    <li><a href="login.jsp"><i class="fa fa-lock"></i>Đăng nhập</a></li>
+                                                                <-->
+								<li><a href="login.jsp"><i class="fa fa-lock"></i> Đăng nhập</a></li>
 							</ul>
 						</div>
 					</div>
@@ -150,6 +161,7 @@
 				</div>
 			</div>
 		</div><!--/header-bottom-->
+              
 	</header><!--/header-->
 	  
 </html>

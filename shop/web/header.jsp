@@ -109,14 +109,14 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 										
-                                                            <li><a href="cart.jsp"><i class="fa fa-star"></i> Giỏ hàng <span  style="color:red"> <b><%=cart.countItem()%></b></span></a></li>
-                                                            <!--%if(users!=null){%>
-                                                                    <!--li><a href=""><users.getUserEmail()%></a>
+                                                            <li><a href="cart.jsp"><i class="fa fa-shopping-cart"></i> Giỏ hàng <span  style="color:red"> <b><%=cart.countItem()%></b></span></a></li>
+                                                            <%if(users!=null){%>
+                                                                    <li><a href=""><%=users.getUserEmail()%></a>
                                                                     </li>
-                                                                < else{%>
+                                                                <%} else{%>
                                                                     <li><a href="login.jsp"><i class="fa fa-lock"></i>Đăng nhập</a></li>
-                                                                <-->
-								<li><a href="login.jsp"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+                                                                <%}%>
+								
 							</ul>
 						</div>
 					</div>

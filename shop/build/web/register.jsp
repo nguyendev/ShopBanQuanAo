@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>register</title>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
-        <script type="text/javascript">
+        <!--script type="text/javascript">
             $(document).ready(function () {
                 var x_timer;
                 $("#email").keyup(function (e) {
@@ -38,7 +38,7 @@
                 }
                 });
             });
-        </script>
+        </script-->
     </head>
     <body>
         <jsp:include page="header.jsp"></jsp:include>
@@ -48,7 +48,7 @@
                         <form action="UsersServlet" method="POST">
 				<div>
 					<span class="word">Email address*</span>
-					<input type="text" name="email" id="email">
+                                        <input type="email" name="email" id="email">
                                         <span id="user-result"></span>
 				</div>
 				<div> 
@@ -61,7 +61,7 @@
                                         <span id='message'></span>
 				</div>
                                 
-                                <input type="submit" value="Register" name="command" disabled="true" id="RegisterButton"> 
+                                <input type="submit" value="Register" name="command"  id="RegisterButton"> 
 			</form>
 		</div>
 	</div>

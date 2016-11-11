@@ -4,13 +4,22 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/web/header.jsp</file>
-            <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/src/java/model/Product.java</file>
+            <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/src/java/connect/DBConnect.java</file>
+            <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/src/java/dao/UsersDAO.java</file>
+            <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/web/footer.jsp</file>
             <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/web/register.jsp</file>
-            <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/web/index.jsp</file>
             <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/web/single.jsp</file>
+            <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/src/java/controller/UsersServlet.java</file>
+            <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/web/login.jsp</file>
             <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/web/cart.jsp</file>
             <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/src/java/dao/ProductDAO.java</file>
+            <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/src/java/model/Product.java</file>
+            <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/src/conf/MANIFEST.MF</file>
+            <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/web/index.jsp</file>
+            <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/src/java/model/Users.java</file>
+            <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/web/WEB-INF/web.xml</file>
             <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/web/product.jsp</file>
+            <file>file:/E:/Project/KiemChungPhanMem/trunk/shop/src/java/controller/CartServlet.java</file>
         </group>
     </open-files>
 </project-private>

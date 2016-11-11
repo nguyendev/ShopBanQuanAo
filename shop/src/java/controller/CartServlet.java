@@ -55,6 +55,7 @@ public class CartServlet extends HttpServlet {
                     break;    
                 case "remove":
                     cart.removeToCart(productid);
+                   
                     break;
             }
         }
@@ -62,7 +63,7 @@ public class CartServlet extends HttpServlet {
             e.printStackTrace();
             response.sendRedirect("/shop/index.jsp");
         }
-                session.setAttribute("cart",cart);
+        session.setAttribute("cart",cart);
         response.sendRedirect("/shop/index.jsp");
     }
 

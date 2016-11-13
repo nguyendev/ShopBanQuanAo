@@ -8,7 +8,7 @@ package controller;
 import dao.UsersDAO;
 import model.Users;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,8 +44,17 @@ public class UsersServlet extends HttpServlet {
                u.setUserEmail(request.getParameter("email"));
                u.setUserPass(request.getParameter("pass"));
                u.setUserRole(false);
-               userDAO.insertUser(u);
-               url = "/login.jsp";
+               try{
+                    if(!userDAO.checkEmail(request.getParameter("email"))){
+                        userDAO.insertUser(u);
+                        url = "/login.jsp";
+                    }
+                    else
+                        request.setAttribute("error", "Email đã tồn tại!");
+               }
+               catch(SQLException e){
+                   
+               }
                break;
             case "Login":
                u= userDAO.Login(request.getParameter("email"), request.getParameter("pass"));

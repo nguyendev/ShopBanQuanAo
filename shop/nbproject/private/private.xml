@@ -3,13 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/HK%20VII/Software%20Testing/ShopBanQuanAo/trunk/shop/src/java/model/Users.java</file>
-            <file>file:/F:/HK%20VII/Software%20Testing/ShopBanQuanAo/trunk/shop/web/single.jsp</file>
-            <file>file:/F:/HK%20VII/Software%20Testing/ShopBanQuanAo/trunk/shop/src/java/controller/UsersServlet.java</file>
-            <file>file:/F:/HK%20VII/Software%20Testing/ShopBanQuanAo/trunk/shop/src/java/dao/UsersDAO.java</file>
-            <file>file:/F:/HK%20VII/Software%20Testing/ShopBanQuanAo/trunk/shop/web/register.jsp</file>
-            <file>file:/F:/HK%20VII/Software%20Testing/ShopBanQuanAo/trunk/shop/web/login.jsp</file>
-            <file>file:/F:/HK%20VII/Software%20Testing/ShopBanQuanAo/trunk/shop/src/java/controller/CheckEmailServlet.java</file>
+            <file>file:/E:/Project/KCPM2/trunk/shop/src/java/dao/BillDAO.java</file>
+            <file>file:/E:/Project/KCPM2/trunk/shop/web/register.jsp</file>
+            <file>file:/E:/Project/KCPM2/trunk/shop/src/java/controller/UsersServlet.java</file>
+            <file>file:/E:/Project/KCPM2/trunk/shop/nbproject/build-impl.xml</file>
+            <file>file:/E:/Project/KCPM2/trunk/shop/web/css/main.css</file>
+            <file>file:/E:/Project/KCPM2/trunk/shop/web/WEB-INF/web.xml</file>
+            <file>file:/E:/Project/KCPM2/trunk/shop/web/js/contact.js</file>
+            <file>file:/E:/Project/KCPM2/trunk/shop/web/cart.jsp</file>
+            <file>file:/E:/Project/KCPM2/trunk/shop/src/java/controller/CheckOutServlet.java</file>
+            <file>file:/E:/Project/KCPM2/trunk/shop/web/header.jsp</file>
+            <file>file:/E:/Project/KCPM2/trunk/shop/web/login.jsp</file>
+            <file>file:/E:/Project/KCPM2/trunk/shop/web/content.jsp</file>
+            <file>file:/E:/Project/KCPM2/trunk/shop/src/java/controller/CartServlet.java</file>
+            <file>file:/E:/Project/KCPM2/trunk/shop/web/checkout.jsp</file>
         </group>
     </open-files>
 </project-private>

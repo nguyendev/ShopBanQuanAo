@@ -65,9 +65,9 @@
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value=<%=list.getValue().getQuantity()%> autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
+									
+                                                                    <input class="cart_quantity_input" disabled="true" type="text" name="quantity" value=<%=list.getValue().getQuantity()%> autocomplete="off" size="2">
+									
 								</div>
 							</td>
 							<td class="cart_total">
@@ -84,6 +84,40 @@
 					</tbody>
 				</table>
 			</div>
+                                        
+                        <div class="col-sm-12">
+                            <div class="total_area">
+						<ul>
+							<li>Tổng giá trị đơn hàng <span><%=cart.totalCart()%> VNĐ</span></li>
+							<li>Phí vận chuyển <span>Miễn phí</span></li>
+							<li>Tổng tiền <span><%=cart.totalCart()%> VNĐ</span></li>
+						</ul>
+							<!--a class="btn btn-default update" href="checkout.jsp">Update</a-->
+							
+					</div>
+                                                         <% 
+                                                     if(cart.countItem() > 0)
+                                                     {
+                                                         %>
+                                                         <a class="btn btn-default check_out pull-right" href="checkout.jsp">Check Out</a>
+                                                        <br>
+                                                        <br>
+                                                        <br>
+                                                     <%}
+                                                    else {
+                                                        %>
+
+                                                       <a class="btn btn-default check_out pull-right" href="index.jsp">Quay lại đặt hàng</a>
+                                                        <br>
+                                                        <br>
+                                                        <br>
+                                               <%} %>
+                                                           
+                                                            
+                                                
+                                                
+                           
+			</div>                
 		</div>
 	</section> <!--/#cart_items-->
         

@@ -67,6 +67,12 @@ public class Cart {
                 cartItems.remove(product);
             }
     }
+    public void increase(int Quantity){
+        Quantity ++;
+    }
+    public void decrease(int Quantity){
+        Quantity --;
+    }
     
     // count item
     public int countItem(){
@@ -78,6 +84,14 @@ public class Cart {
 
     public double total() {
             double count = 0;
+            for (Map.Entry<Long, Item> list : cartItems.entrySet()) {
+                count += list.getValue().getProduct().getProductPrice() * list.getValue().getQuantity();
+            }
+            return count;
+    }
+
+    public double totalCart() {
+        double count = 0;
             for (Map.Entry<Long, Item> list : cartItems.entrySet()) {
                 count += list.getValue().getProduct().getProductPrice() * list.getValue().getQuantity();
             }

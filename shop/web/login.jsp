@@ -56,7 +56,7 @@
 		<div class="row">
                     <div class="col-sm-4 col-sm-offset-1">
 			<div class="login-form"><!--login form-->
-                            <h2>Login to your account</h2>
+                            <h2>Đăng nhập từ tài khoản của bạn</h2>
 				<form action="UsersServlet" method="POST">
                                     <% if(request.getParameter("error")!=null){ %>
                                     <div>
@@ -65,9 +65,19 @@
                                     <%}%>
                                     <input type="text" placeholder="User Name" name="email"/>
                                     <input type="password" placeholder="Password" name="pass"/>
+
+                                    <span>
+					<input type="checkbox" class="checkbox"> 
+					Giữ tôi đăng nhập
+                                    </span>
                                     <button type="submit" class="btn btn-default" value="Login" name="command">Đăng nhập</button>
-                                    <a href="register.jsp">Đăng ký</a>
+                                    
+                                    
+                                    
 				</form>
+                                <br>
+                                <a class="" href="register.jsp">Đăng ký một tài khoản mới</a>
+                                
 			</div><!--/login form-->
                     </div>
 		</div>

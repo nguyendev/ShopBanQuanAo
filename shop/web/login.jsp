@@ -56,7 +56,7 @@
 		<div class="row">
                     <div class="col-sm-4 col-sm-offset-1">
 			<div class="login-form"><!--login form-->
-                            <h2>Login to your account</h2>
+                            <h2>Đăng nhập tài khoản của bạn</h2>
 				<form action="UsersServlet" method="POST">
                                     <% if(request.getParameter("error")!=null){ %>
                                     <div>
@@ -68,9 +68,11 @@
                                     <div>
                                         <p style="color:red">${error}</p>
                                     </div>
-                                    <a href="register.jsp">Đăng ký</a>
-                                    <button type="submit" class="btn btn-default" value="Login" name="command">Đăng nhập</button>
                                     
+                                    <button type="submit" class="btn btn-default" value="Login" name="command">Đăng nhập</button>
+                                    <br>
+                                    
+                                    <a href="register.jsp">Đăng ký</a> 
 				</form>
 			</div><!--/login form-->
                     </div>

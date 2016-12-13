@@ -52,10 +52,15 @@ public class UsersServlet extends HttpServlet {
                     try{
                         // chưa tồn tại email
                         if(!userDAO.checkEmail(request.getParameter("email"))){
-                             userDAO.insertUser(u);
-                             url = "/login.jsp";
-                             RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
-                             rd.forward(request, response);
+                            userDAO.insertUser(u);
+                            //PrintWriter out = response.getWriter();  
+                            //response.setContentType("text/html");  
+                            //out.println("<script type=\"text/javascript\">");  
+                            //out.println("alert('Đăng ký thành công');");  
+                            //out.println("</script>");
+                            url = "/login.jsp";
+                            RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
+                            rd.forward(request, response);
                         }
                         //đã tồn tại
                         else{

@@ -70,7 +70,7 @@
 								<div class="single-products">
 										<div class="productinfo text-center">
 											<img src=<%= p.getProductImage()%> alt=<%= p.getProductImage()%> />
-											<h2><%=p.getProductPrice()%>VNĐ</h2>
+											<h2><%=p.getProductPrice()%> VNĐ</h2>
 											<p><%= p.getProductName()%></p>
 											<a href="CartServlet?command=plus&productID=<%=p.getProductID()%>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 										</div>

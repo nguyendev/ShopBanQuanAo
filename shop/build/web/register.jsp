@@ -44,7 +44,7 @@
                             <div class="row">
                                 <div class="col-sm-4 col-sm-offset-1">
                                     <div class="login-form"><!--register-->
-                                        <h2>Register</h2>
+                                        <h2>Đăng ký tài khoản</h2>
                                             <form action="UsersServlet" method="POST">
                                                 <div>
                                                         <span class="word">Email address*</span><span id="user-result"></span>

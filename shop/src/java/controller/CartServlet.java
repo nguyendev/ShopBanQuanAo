@@ -8,6 +8,7 @@ package controller;
 import dao.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,17 +47,9 @@ public class CartServlet extends HttpServlet {
             Product product = productDAO.getProduct(productid);          
             switch(command){
                 case "plus":
-                    if(cart.getCartItems().containsKey(productid)){
-                        cart.plusToCart(productid, new Item(product, 
-                                cart.getCartItems().get(productid).getQuantity()));
-                    }
-                    else{
-                        cart.plusToCart(productid, new Item(product,1));
-                    }
-                    break;    
+                    Plus(request, response);
                 case "remove":
-                    cart.removeToCart(productid);
-                   
+                    Remove(cart,productid);
                     break;
               
             }
@@ -74,5 +67,34 @@ public class CartServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    public boolean Plus(HttpServletRequest request, HttpServletResponse response) {
+    
+        HttpSession session = request.getSession();
+        String productID = request.getParameter("productID");
+        Cart cart = (Cart) session.getAttribute("cart");
+        Long productid = Long.parseLong(productID);
+        try{
+            Product product = productDAO.getProduct(productid);   
+            if(cart.getCartItems().containsKey(productid)){
+                cart.plusToCart(productid, new Item(product, 
+                    cart.getCartItems().get(productid).getQuantity()));
+            }
+            else{
+                cart.plusToCart(productid, new Item(product,1));
+            }
+            return true;
+        }
+        catch (Exception e)
+        {
+        }
+        return false;
+    }
+    public boolean Remove(Cart cart, Long productid){
+        try {
+            cart.removeToCart(productid);
+            return true;
+        }
+        catch (Exception e){}
+        return false;
+    }
 }

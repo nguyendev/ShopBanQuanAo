@@ -5,14 +5,16 @@
  */
 package controller;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.junit.After;
-import org.junit.AfterClass;
+import javax.servlet.http.HttpSession;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.mockito.Mock;
+import static org.mockito.Mockito.*;
+
 
 /**
  *
@@ -20,51 +22,25 @@ import static org.junit.Assert.*;
  */
 public class UsersServletTest {
     
-    public UsersServletTest() {
-    }
+    @Mock
+    RequestDispatcher rd;
+
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+    @Test
+    public void testServlet() throws Exception {
+        HttpServletRequest request = mock(HttpServletRequest.class);       
+        HttpServletResponse response = mock(HttpServletResponse.class); 
+        HttpSession session = request.getSession(true);
+        when(request.getParameter("email")).thenReturn("nguyen.nah76@gmail.com");
+        when(request.getParameter("pass")).thenReturn("123456");
+        when(request.getParameter("command")).thenReturn("Login");
+        when(request.getSession()).thenReturn(session);
+        when(request.getRequestDispatcher("WEB-INF/index.jsp")).thenReturn(rd);
+        new UsersServlet().doPost(request, response);
+
+/*        verify(request, atLeast(1)).getParameter("username"); // only if you want to verify username was called...
+        */
+        
     }
 
-    /**
-     * Test of doGet method, of class UsersServlet.
-     */
-    @Test
-    public void testDoGet() throws Exception {
-        System.out.println("doGet");
-        HttpServletRequest request = null;
-        HttpServletResponse response = null;
-        UsersServlet instance = new UsersServlet();
-        instance.doGet(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of doPost method, of class UsersServlet.
-     */
-    @Test
-    public void testDoPost() throws Exception {
-        System.out.println("doPost");
-        HttpServletRequest request = null;
-        HttpServletResponse response = null;
-        UsersServlet instance = new UsersServlet();
-        instance.doPost(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }

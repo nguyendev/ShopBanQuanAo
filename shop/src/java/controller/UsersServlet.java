@@ -38,11 +38,39 @@ public class UsersServlet extends HttpServlet {
        String command = request.getParameter("command");
        String url="";
        Users u = new Users();
-       HttpSession httpSession=request.getSession();
+       HttpSession httpSession=request.getSession(true);
        switch(command){
            case "Register":
                // so sánh 2 ô mật khẩu
-               if(request.getParameter("pass").equals(request.getParameter("pass2"))){
+               register(request, response, u, url);
+               break;
+            case "Login":
+               u= userDAO.Login(request.getParameter("email"), MD5.encryption(request.getParameter("pass")));
+               // nếu tồn tại người dùng
+               if(u!=null){
+                    /*httpSession.setAttribute("user", u);*/
+                    url = "/index.jsp";
+                    response.sendRedirect("/index.jsp");
+                    /*RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
+                    rd.forward(request, response);*/
+               }
+               // người dùng không tồn tại
+               else{
+                    request.setAttribute("keptEmail",request.getParameter("email"));  
+                    request.setAttribute("keptPass",request.getParameter("pass"));
+                    request.setAttribute("error", "Sai tên người dùng hoặc mật khẩu!");
+                    url = "/login.jsp";
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
+                    rd.forward(request, response);
+               }
+               
+               break;
+       }
+        
+    }
+
+    protected boolean register(HttpServletRequest request, HttpServletResponse response, Users u, String url){
+        if(request.getParameter("pass").equals(request.getParameter("pass2"))){
                     u.setUserID(new Date().getTime());
                     // get by name
                     u.setUserEmail(request.getParameter("email"));
@@ -60,7 +88,11 @@ public class UsersServlet extends HttpServlet {
                             //out.println("</script>");
                             url = "/login.jsp";
                             RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
-                            rd.forward(request, response);
+                            try {
+                                rd.forward(request, response);
+                                return true;
+                            }
+                            catch(Exception e){}
                         }
                         //đã tồn tại
                         else{
@@ -70,7 +102,11 @@ public class UsersServlet extends HttpServlet {
                             request.setAttribute("error", "Email đã tồn tại!");
                             url = "/register.jsp";
                             RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
-                            rd.forward(request, response);
+                            try {
+                                rd.forward(request, response);
+                                return true;
+                            }
+                            catch(Exception e){}
                         }
                     }
                     catch(SQLException e){
@@ -84,32 +120,13 @@ public class UsersServlet extends HttpServlet {
                     request.setAttribute("keptPass1",request.getParameter("pass"));
                     request.setAttribute("keptPass2",request.getParameter("pass2"));
                     request.setAttribute("error", "Mật khẩu không khớp");  
-                    request.getRequestDispatcher("register.jsp").forward(request,response);
+                    try {
+                        request.getRequestDispatcher("register.jsp").forward(request,response);
+                        return true;
+                    }
+                    catch (Exception e){}
                }
+        return false;
                
-               break;
-            case "Login":
-               u= userDAO.Login(request.getParameter("email"), MD5.encryption(request.getParameter("pass")));
-               // nếu tồn tại người dùng
-               if(u!=null){
-                    httpSession.setAttribute("user", u);
-                    url = "/index.jsp";
-                    RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
-                    rd.forward(request, response);
-               }
-               // người dùng không tồn tại
-               else{
-                   request.setAttribute("keptEmail",request.getParameter("email"));  
-                    request.setAttribute("keptPass",request.getParameter("pass"));
-                   request.setAttribute("error", "Sai tên người dùng hoặc mật khẩu!");
-                   url = "/login.jsp";
-                    RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
-                    rd.forward(request, response);
-               }
-               
-               break;
-       }
-        
     }
-
 }

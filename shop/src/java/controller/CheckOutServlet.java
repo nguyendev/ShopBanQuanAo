@@ -41,6 +41,19 @@ public class CheckOutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        Users users = (Users) session.getAttribute("user");
+        InsertBill(request, cart, users);
+        response.sendRedirect("/shop/index.jsp");
+    }
+    public static void main(String[] args) throws SQLException {
+        
+        new BillDAO().insertBill(new Bill(0, 0, 0, "s", "s", new Timestamp(new Date().getTime()),"s","s","s","s","s"));
+    }
+    
+    public boolean InsertBill(HttpServletRequest request, Cart cart, Users users)
+    {
         String payment = request.getParameter("payment");
         String address = request.getParameter("address");
         String address1 = request.getParameter("adress1");
@@ -49,8 +62,6 @@ public class CheckOutServlet extends HttpServlet {
         String email = request.getParameter("email");
         String message = request.getParameter("message");
         HttpSession session = request.getSession();
-        Cart cart = (Cart) session.getAttribute("cart");
-        Users users = (Users) session.getAttribute("user");
         try {
             long ID = new Date().getTime();
             Bill bill = new Bill();
@@ -74,14 +85,12 @@ public class CheckOutServlet extends HttpServlet {
             }
             cart = new Cart();
             session.setAttribute("cart", cart);
-        } catch (Exception e) {
+            return true;
+        } 
+        
+        catch (SQLException e) {
         }
-        
-        response.sendRedirect("/shop/index.jsp");
-    }
-    public static void main(String[] args) throws SQLException {
-        
-        new BillDAO().insertBill(new Bill(0, 0, 0, "s", "s", new Timestamp(new Date().getTime()),"s","s","s","s","s"));
+        return false;
     }
 
 }

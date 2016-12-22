@@ -44,25 +44,12 @@ public class CategoryDAOTest {
      */
     @Test
     public void testGetListCategory() throws Exception {
-        System.out.println("getListCategory");
+        System.out.println("Chuyen muc: Lay danh sach");
         CategoryDAO instance = new CategoryDAO();
-        ArrayList<Category> expResult = null;
         ArrayList<Category> result = instance.getListCategory();
-        assertEquals(expResult, result);
+        assertNotNull(result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.print("Chuyen muc: Lay danh sach 'thanh cong'");
     }
-
-    /**
-     * Test of main method, of class CategoryDAO.
-     */
-    @Test
-    public void testMain() throws Exception {
-        System.out.println("main");
-        String[] args = null;
-        CategoryDAO.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+        
 }

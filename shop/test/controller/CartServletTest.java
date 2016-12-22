@@ -7,6 +7,7 @@ package controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Cart;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -41,7 +42,6 @@ public class CartServletTest {
 
     /**
      * Test of doGet method, of class CartServlet.
-     * @throws java.lang.Exception
      */
     @Test
     public void testDoGet() throws Exception {
@@ -56,7 +56,6 @@ public class CartServletTest {
 
     /**
      * Test of doPost method, of class CartServlet.
-     * @throws java.lang.Exception
      */
     @Test
     public void testDoPost() throws Exception {
@@ -78,6 +77,36 @@ public class CartServletTest {
         CartServlet instance = new CartServlet();
         String expResult = "";
         String result = instance.getServletInfo();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of Plus method, of class CartServlet.
+     */
+    @Test
+    public void testPlus() throws Exception {
+        System.out.println("Plus");
+        HttpServletRequest request = null;
+        HttpServletResponse response = null;
+        CartServlet instance = new CartServlet();
+        instance.Plus(request, response);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of Remove method, of class CartServlet.
+     */
+    @Test
+    public void testRemove() {
+        System.out.println("Remove");
+        Cart cart = new Cart();
+        Long productid = 1;
+        CartServlet instance = new CartServlet();
+        boolean expResult = false;
+        boolean result = instance.Remove(cart, productid);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

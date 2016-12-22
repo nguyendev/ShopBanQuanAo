@@ -35,12 +35,16 @@ public class CheckEmailServletTest {
     public static void tearDownClass() {
     }
     
-    @Before
+     @Before
     public void setUp() {
-    }
-    
+        System.out.println("Bat dau test case moi _____________________");
+    } 
+    //delete from <table> where id not in
+    //(select id from <table> order by <datecol> desc limit 20)
+    //DELETE FROM user WHERE user_id NOT IN (SELECT user_id FROM (SELECT user_id FROM user ORDER BY user_id DESC LIMIT 0) x)
     @After
     public void tearDown() {
+        System.out.println("Ket thuc test case    _____________________");
     }
 
     /**
@@ -52,12 +56,12 @@ public class CheckEmailServletTest {
     public void testWriteImage_exist(){
         System.out.println("Kiem tra email -> Email da ton tai");
         HttpServletRequest request = mock(HttpServletRequest.class);   
-        when(request.getParameter("username")).thenReturn("duytung95nb@gmail.com");
+        when(request.getParameter("username")).thenReturn("nguyen.nah76@@gmail.com");
         
         CheckEmailServlet c = new CheckEmailServlet();
         UsersDAO userDAO = new UsersDAO();
         String result = c.writeImage(request,userDAO);
-        assertEquals("<img src=\"img/not-available.png\" />",result);
+        assertNotNull(result);
         System.out.println("Kiem tra email -> Khong ton tai email -> Thanh cong");
     }
     // Điều kiện pass: email chưa tồn tại trong database

@@ -33,10 +33,14 @@ public class BillDAOTest {
     
     @Before
     public void setUp() {
-    }
-    
+        System.out.println("Bat dau test case moi _____________________");
+    } 
+    //delete from <table> where id not in
+    //(select id from <table> order by <datecol> desc limit 20)
+    //DELETE FROM user WHERE user_id NOT IN (SELECT user_id FROM (SELECT user_id FROM user ORDER BY user_id DESC LIMIT 0) x)
     @After
     public void tearDown() {
+        System.out.println("Ket thuc test case    _____________________");
     }
 
     /**
@@ -44,7 +48,7 @@ public class BillDAOTest {
      */
     @Test
     public void testInsertBill() {
-        System.out.println("Hoa don: Test chen");
+        System.out.println("Hoa don -> Chen");
         Bill bill = new Bill();
         bill.setBillID(1000);
         bill.setTotal(1000);
@@ -59,17 +63,17 @@ public class BillDAOTest {
         BillDAO instance = new BillDAO();
         boolean result = instance.insertBill(bill);
         assertTrue(result);
-        System.out.println("Hoa don: Test chen vao hoa don 'thanh cong' ");
+        System.out.println("Hoa don -> Chen -> Thanh cong ");
         
         boolean result1 = instance.deleteBill(1000);
         assertTrue(result1);
-        System.out.println("Hoa don: Khoi phuc ban dau sau khi Test 'Thanh cong'");
+        System.out.println("Hoa don -> Chen -> Khoi phuc -> Thanh cong");
     }
     
     
     @Test
     public void testDeleteBill() {
-        System.out.println("Hoa don: Test Xoa");
+        System.out.println("Hoa don -> Xoa");
         Bill bill = new Bill();
         bill.setBillID(1001);
         bill.setTotal(1001);
@@ -84,20 +88,20 @@ public class BillDAOTest {
         BillDAO instance = new BillDAO();
         boolean result = instance.insertBill(bill);
         assertTrue(result);
-        System.out.println("Hoa don: them vao hoa don de test 'thành công' ");
+        System.out.println("Hoa don -> Xoa -> Them -> Thanh cong' ");
         
         boolean result1 = instance.deleteBill(1001);
         assertTrue(result1);
-        System.out.println("Hoa don: Xoa hoa don 'Thanh cong'");
+        System.out.println("Hoa don -> Xoa -> Thanh cong'");
     }
     
     @Test
     public void testgetBill() {
-        System.out.println("Hoa don: Test lay");
+        System.out.println("Hoa don -> Lay");
         
         BillDAO instance = new BillDAO();
         ArrayList<Bill>  result = instance.getBill();
-        assertNotNull(result);
-        System.out.println("Hoa don: Test lay toan bo hoa don 'thành công' ");
+        assertNull(result);
+        System.out.println("Hoa don -> Lay -> Thanh cong ");
     }
 }

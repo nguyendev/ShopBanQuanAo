@@ -47,7 +47,7 @@ public class CartServlet extends HttpServlet {
             Product product = productDAO.getProduct(productid);          
             switch(command){
                 case "plus":
-                    Plus(request, response);
+                    Plus(request, response, cart);
                 case "remove":
                     Remove(cart,productid);
                     break;
@@ -67,11 +67,10 @@ public class CartServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    public boolean Plus(HttpServletRequest request, HttpServletResponse response) {
+    public boolean Plus(HttpServletRequest request, HttpServletResponse response, Cart cart) {
     
         HttpSession session = request.getSession();
         String productID = request.getParameter("productID");
-        Cart cart = (Cart) session.getAttribute("cart");
         Long productid = Long.parseLong(productID);
         try{
             Product product = productDAO.getProduct(productid);   

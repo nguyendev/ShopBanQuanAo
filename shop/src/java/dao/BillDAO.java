@@ -70,7 +70,7 @@ public class BillDAO {
                 bill.setEmail(rs.getString("email"));
                 list.add(bill);
             }
-            return list;
+            
         }
         catch (SQLException e)
         {

@@ -57,6 +57,31 @@ public class UsersDAO {
         }
         return false;
     }
+    public boolean deleteUser(long  user_id){
+        String sql = "DELETE FROM user WHERE user_id = " + user_id;
+        try{
+            PreparedStatement ps = connection.prepareCall(sql);
+            ps.executeUpdate();
+            return true;
+        }
+        catch(SQLException e){
+            Logger.getLogger(UsersDAO.class.getName()).log(Level.SEVERE,null,e);
+        }
+        return false;
+    }
+    public boolean deleteUserFromEmail(String  email){
+        String sql = "DELETE FROM user WHERE user_email ="
+                +  email;
+        try{
+            PreparedStatement ps = connection.prepareCall(sql);
+            ps.execute();
+            return true;
+        }
+        catch(SQLException e){
+            Logger.getLogger(UsersDAO.class.getName()).log(Level.SEVERE,null,e);
+        }
+        return false;
+    }
     
     public Users Login(String email, String password){
         String sql = "SELECT * FROM user WHERE user_email='"+email+

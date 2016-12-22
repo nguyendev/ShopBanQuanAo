@@ -57,23 +57,38 @@ public class UsersDAOTest {
      */
     @Test
     public void testCheckEmail_exists() throws Exception {
-        System.out.println("Check Email exists: Kiem tra email da ton tai");
-        String email = "duytung95nb@gmail.com";
+        System.out.println("Nguoi dung -> Kiem tra email da ton tai");
+        
+        // them vao de xoa
+        Users u = new Users(10001, "exists@gmail.com", "e10adc3949ba59abbe56e057f20f883e", true);
         UsersDAO instance = new UsersDAO();
         boolean expResult = true;
-        boolean result = instance.checkEmail(email);
+        boolean result = instance.insertUser(u);
         assertEquals(expResult, result);
-        System.out.println("Kiem tra email da ton tai: Thanh cong");
+        
+        // kiem tra email
+        String email = "exists@gmail.com";
+        boolean result1 = instance.checkEmail(email);
+        assertEquals(expResult, result1);
+        
+        // xoa
+        boolean result2 = instance.deleteUser(10001);
+        assertEquals(expResult, result2);
+        System.out.println("Nguoi dung -> Kiem tra email da ton tai -> Thanh cong");
+        
+        //Xoa nguoi dung sau khi test
+        
+        
     }
     @Test
     public void testCheckEmail_notExists() throws Exception {
-        System.out.println("Check Email does not exist: Kiem tra email khong ton tai");
+        System.out.println("Nguoi dung -> Kiem tra email khong ton tai");
         String email = "duytung95nb1@gmail.com";
         UsersDAO instance = new UsersDAO();
         boolean expResult = false;
         boolean result = instance.checkEmail(email);
         assertEquals(expResult, result);
-        System.out.println("Kiem tra email khong ton tai: Thanh cong");
+        System.out.println("Nguoi dung -> Kiem tra email khong ton tai -> Thanh cong");
         // TODO review the generated test code and remove the default call to fail.
     }
     /**
@@ -81,26 +96,40 @@ public class UsersDAOTest {
      */
     @Test
     public void testInsertUser_success() {
-        System.out.println("insertUser success: Them user thanh cong");
+        System.out.println("Nguoi dung -> Them");
         // id chưa có
-        Users u = new Users(3, "successInsert", "1234", true);
+        Users u = new Users(100, "successInsert", "e10adc3949ba59abbe56e057f20f883e", true);
         UsersDAO instance = new UsersDAO();
         boolean expResult = true;
         boolean result = instance.insertUser(u);
         assertEquals(expResult, result);
-        System.out.println("Them user thanh cong: Thanh cong");
+        
+        // xoa
+        boolean result1 = instance.deleteUser(100);
+        assertEquals(expResult, result1);
+        System.out.println("Nguoi dung -> Them -> Thanh cong");
         // TODO review the generated test code and remove the default call to fail.
     }
     @Test
     public void testInsertUser_fail() {
-        System.out.println("insertUser fail: Them user that bai");
-        //đã tồn tại user có id là 0
-        Users u = new Users(1, "testfail", "1234", true);
+        System.out.println("Nguoi dung -> Them that bai");
+        
+        // them vao de test
+        Users u = new Users(10003, "addexits@gmail.com", "e10adc3949ba59abbe56e057f20f883e", true);
         UsersDAO instance = new UsersDAO();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.insertUser(u);
         assertEquals(expResult, result);
-         System.out.println("Them user that bai: Thanh cong");
+        
+        //đã tồn tại user có id là 0
+        Users u2 = new Users(10003, "testfail@gmail.com", "1234", true);
+        boolean result1 = instance.insertUser(u2);
+        assertEquals(expResult, result1);
+        
+        boolean result2 = instance.deleteUser(10003);
+        assertEquals(expResult, result2);
+        
+        System.out.println("Nguoi dung -> Them that bai -> Thanh cong");
         // TODO review the generated test code and remove the default call to fail.
     }
     /**
@@ -108,29 +137,28 @@ public class UsersDAOTest {
      */
     @Test
     public void testLogin_success() {
-        System.out.println("Login success: Dang nhap thanh cong");
+        System.out.println("Nguoi dung -> Dang nhap thanh cong");
         
-        Users expResult = new Users();
-        Date dt = new Date(Long.parseLong("1482383677137"));
-        long date = dt.getTime();
-        expResult.setUserID(date);
-        expResult.setUserEmail("duytung95nb@gmail.com");
-        expResult.setUserPass("e10adc3949ba59abbe56e057f20f883e");
-        
-        String email = "duytung95nb@gmail.com";
-        String password = "e10adc3949ba59abbe56e057f20f883e";
+        Users u = new Users(10006, "login@gmail.com", "e10adc3949ba59abbe56e057f20f883e", true);
         UsersDAO instance = new UsersDAO();
-        Users result = instance.Login(email, password);
-        assertEquals(expResult.getUserID(), result.getUserID());
-        assertEquals(expResult.getUserEmail(), result.getUserEmail());
-        assertEquals(expResult.getUserPass(), result.getUserPass());
+        boolean expResult = true;
+        boolean result = instance.insertUser(u);
+        assertEquals(expResult, result);
         
-        System.out.println("Dang nhap thanh cong: Thanh cong!");
+
+        String email = "login@gmail.com";
+        String password = "e10adc3949ba59abbe56e057f20f883e";
+        Users result1  = instance.Login(email, password);
+        assertNotNull(result1);
+        
+        boolean result2 = instance.deleteUser(10006);
+        assertEquals(expResult, result2);
+        System.out.println("Nguoi dung -> Dang nhap thanh cong -> Thanh cong!");
     }
     // not exist user name || password
     @Test
     public void testLogin_fail() {
-        System.out.println("Login fail: Dang nhap that bai");
+        System.out.println("Nguoi dung -> Dang nhap that bai");
         // not exists username
         String email = "notexists@gmail.com";
         String password = "e10adc3949ba59abbe56e057f20f883e";
@@ -138,7 +166,7 @@ public class UsersDAOTest {
         Users result = instance.Login(email, password);
         
         assertNull(result);
-        System.out.println("Dang nhap that bai - sai username: Thanh cong");
+        System.out.println("Nguoi dung -> Dang nhap that bai - sai username -> Thanh cong");
         
         // not exists password
         email = "duytung95nb@gmail.com";
@@ -146,6 +174,22 @@ public class UsersDAOTest {
         result = instance.Login(email, password);
         
         assertNull(result);
-        System.out.println("Dang nhap that bai - sai password: Thanh cong");
+        System.out.println("Nguoi dung -> Dang nhap that bai - sai password -> Thanh cong");
+    }
+    @Test
+    public void testdeleteUser() {
+        System.out.println("Nguoi dung -> Xoa");
+        // them vao de xoa
+        Users u = new Users(10002, "delete@gmail.com", "e10adc3949ba59abbe56e057f20f883e", true);
+        UsersDAO instance = new UsersDAO();
+        boolean expResult = true;
+        boolean result = instance.insertUser(u);
+        assertEquals(expResult, result);
+        
+        // xoa
+        boolean result1 = instance.deleteUser(10002);
+        assertEquals(expResult, result1);
+        System.out.println("Nguoi dung -> Xoa -> Thanh cong");
+        // TODO review the generated test code and remove the default call to fail.
     }
 }

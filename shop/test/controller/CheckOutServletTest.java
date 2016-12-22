@@ -5,18 +5,18 @@
  */
 package controller;
 
-import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Cart;
-import model.Item;
-import model.Product;
+import model.Users;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -43,69 +43,33 @@ public class CheckOutServletTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of doGet method, of class CheckOutServlet.
-     */
-    @Test
-    public void testDoGet() throws Exception {
-        System.out.println("doGet");
-        HttpServletRequest request = null;
-        HttpServletResponse response = null;
-        CheckOutServlet instance = new CheckOutServlet();
-        instance.doGet(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
-    /**
-     * Test of doPost method, of class CheckOutServlet.
-     */
-    @Test
-    public void testDoPost() throws Exception {
-        System.out.println("doPost");
-        HttpServletRequest request = null;
-        HttpServletResponse response = null;
-        CheckOutServlet instance = new CheckOutServlet();
-        instance.doPost(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of main method, of class CheckOutServlet.
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testMain() throws Exception {
-        System.out.println("main");
-        String[] args = null;
-        CheckOutServlet.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of InsertBill method, of class CheckOutServlet.
-     */
     @Test
     public void testInsertBill() {
-        System.out.println("Controller: InsertBill ");
-        HttpServletRequest request = null;
-        request.setAttribute("payment", this);
-        request.setAttribute("address", this);
-        request.setAttribute("adress1", this);
-        request.setAttribute("name", this);
-        request.setAttribute("provincial", this);
-        request.setAttribute("email", this);
-        request.setAttribute("message", this);
+        System.out.println("Thanh toan -> them ");
+        HttpServletRequest request = mock(HttpServletRequest.class);   
+        HttpSession session = mock(HttpSession.class);
+        when(request.getSession()).thenReturn(session);
+        request.setAttribute("bill_id", 1000);
+        request.setAttribute("payment", "s");
+        request.setAttribute("address", "s");
+        request.setAttribute("adress1", "s");
+        request.setAttribute("name", "s");
+        request.setAttribute("provincial", "s");
+        request.setAttribute("email", "s@s.con");
+        request.setAttribute("message", "s");
         
+        Cart cart = new Cart();
+        cart.setTotalCart(1000);
+        Users users = new Users();
+        users.setUserID(1000);
         CheckOutServlet instance = new CheckOutServlet();
-        boolean expResult = true;
-        boolean result;
+        boolean result = instance.InsertBill(request, cart, users);
+        assertEquals(true,result);
         /*result = instance.InsertBill(request, null);
         assertEquals(expResult, result);*/
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Thanh toan -> them -> thanh cong");
     }
     
 }

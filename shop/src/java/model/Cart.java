@@ -15,6 +15,7 @@ import java.util.Map;
 public class Cart {
  
     private HashMap<Long, Item> cartItems;
+    private double totalcart;
  
     public Cart() {
         cartItems = new HashMap<>();
@@ -91,10 +92,14 @@ public class Cart {
     }
 
     public double totalCart() {
-        double count = 0;
+        totalcart = 0;
             for (Map.Entry<Long, Item> list : cartItems.entrySet()) {
-                count += list.getValue().getProduct().getProductPrice() * list.getValue().getQuantity();
+                totalcart += list.getValue().getProduct().getProductPrice() * list.getValue().getQuantity();
             }
-            return count;
+            return totalcart;
+    }
+    public double setTotalCart (double set)
+    {
+        return totalcart = set;
     }
 }

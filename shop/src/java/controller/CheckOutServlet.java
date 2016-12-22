@@ -62,6 +62,56 @@ public class CheckOutServlet extends HttpServlet {
         String email = request.getParameter("email");
         String message = request.getParameter("message");
         HttpSession session = request.getSession();
+        long ID = new Date().getTime();
+        Bill bill = new Bill();
+        bill.setBillID(ID);
+        bill.setAddress(address);
+        bill.setAddress1(address1);
+        bill.setName(name);
+        bill.setProvincial(provincial);
+        bill.setEmail(email);
+        bill.setMessage(message);
+        bill.setPayment(payment);
+        bill.setUserID(users.getUserID());
+        bill.setDate(new Timestamp(new Date().getTime()));
+        bill.setTotal(cart.totalCart());
+        boolean insertBill = billDAO.insertBill(bill);
+        for (Map.Entry<Long, Item> list : cart.getCartItems().entrySet()) {
+            boolean insertBillDetail = billDetailDAO.insertBillDetail(new BillDetail(0, ID,
+                    list.getValue().getProduct().getProductID(),
+                    list.getValue().getProduct().getProductPrice(),
+                    list.getValue().getQuantity()));
+            if(!insertBillDetail)
+                return false;
+		}
+        try {
+            long ID = new Date().getTime();
+            Bill bill = new Bill();
+            bill.setBillID(ID);
+            bill.setAddress(address);
+            bill.setAddress1(address1);
+            bill.setName(name);;
+            bill.setProvincial(provincial);
+            bill.setEmail(email);
+            bill.setMessage(message);
+            bill.setPayment(payment);
+            bill.setUserID(users.getUserID());
+            bill.setDate(new Timestamp(new Date().getTime()));
+            bill.setTotal(cart.totalCart());
+            billDAO.insertBill(bill);
+            for (Map.Entry<Long, Item> list : cart.getCartItems().entrySet()) {
+                billDetailDAO.insertBillDetail(new BillDetail(0, ID,
+                        list.getValue().getProduct().getProductID(),
+                        list.getValue().getProduct().getProductPrice(),
+                        list.getValue().getQuantity()));
+            }
+            cart = new Cart();
+            session.setAttribute("cart", cart);
+            return true;
+        } 
+        
+        catch (SQLException e) {
+
         try {
             long ID = new Date().getTime();
             Bill bill = new Bill();
@@ -90,7 +140,9 @@ public class CheckOutServlet extends HttpServlet {
         
         catch (Exception e) {
         }
-        return false;
+        cart = new Cart();
+        session.setAttribute("cart", cart);
+        return insertBill;
     }
-
+    
 }

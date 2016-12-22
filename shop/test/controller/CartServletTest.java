@@ -5,15 +5,22 @@
  */
 package controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import model.Cart;
+import model.Users;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.mockito.Mock;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Item;
+import model.Product;
 
 /**
  *
@@ -39,61 +46,26 @@ public class CartServletTest {
     @After
     public void tearDown() {
     }
-
-    /**
-     * Test of doGet method, of class CartServlet.
-     */
+ 
     @Test
-    public void testDoGet() throws Exception {
-        System.out.println("doGet");
-        HttpServletRequest request = null;
-        HttpServletResponse response = null;
+    public void testPlusflase() {
+      
+        System.out.println("Gio hang -> Them san pham ");
+        HttpServletRequest request = mock(HttpServletRequest.class);       
+        HttpServletResponse response = mock(HttpServletResponse.class); 
+        /*HttpSession session = mock(HttpSession.class);*/
+        when(request.getParameter("productID")).thenReturn("1");
+        /*when(request.getSession()).thenReturn(session);
+        session = request.getSession();
+        Cart cart = (Cart)session.getAttribute("cart");
+        if (cart == null){
+            cart = new Cart();
+            session.setAttribute("cart", cart);
+        }*/
         CartServlet instance = new CartServlet();
-        instance.doGet(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of doPost method, of class CartServlet.
-     */
-    @Test
-    public void testDoPost() throws Exception {
-        System.out.println("doPost");
-        HttpServletRequest request = null;
-        HttpServletResponse response = null;
-        CartServlet instance = new CartServlet();
-        instance.doPost(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getServletInfo method, of class CartServlet.
-     */
-    @Test
-    public void testGetServletInfo() {
-        System.out.println("getServletInfo");
-        CartServlet instance = new CartServlet();
-        String expResult = "";
-        String result = instance.getServletInfo();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of Plus method, of class CartServlet.
-     */
-    @Test
-    public void testPlus() throws Exception {
-        System.out.println("Plus");
-        HttpServletRequest request = null;
-        HttpServletResponse response = null;
-        CartServlet instance = new CartServlet();
-        instance.Plus(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean result = instance.Plus(request, response);
+        assertEquals(false,result);
+        System.out.println("Gio hang -> Them san pham -> Thanh cong");
     }
 
     /**
@@ -101,15 +73,15 @@ public class CartServletTest {
      */
     @Test
     public void testRemove() {
-        System.out.println("Remove");
+        System.out.println("Gio hang -> Xoa san pham");
         Cart cart = new Cart();
-        Long productid = 1;
+        cart.plusToCart((long)1, new Item(new Product(1,1,"","","","",1,""), 1));
+        long productid = 1;
         CartServlet instance = new CartServlet();
-        boolean expResult = false;
         boolean result = instance.Remove(cart, productid);
-        assertEquals(expResult, result);
+        assertTrue(result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Gio hang -> Xoa san pham -> Thanh cong");
     }
     
 }

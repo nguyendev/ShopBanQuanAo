@@ -43,6 +43,7 @@ public class UsersServlet extends HttpServlet {
            case "Register":
                // so sánh 2 ô mật khẩu
                register(request, response, u, url);
+                
                break;
             case "Login":
                u= userDAO.Login(request.getParameter("email"), MD5.encryption(request.getParameter("pass")));
@@ -60,16 +61,16 @@ public class UsersServlet extends HttpServlet {
                     request.setAttribute("keptPass",request.getParameter("pass"));
                     request.setAttribute("error", "Sai tên người dùng hoặc mật khẩu!");
                     url = "/login.jsp";
-                    RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
-                    rd.forward(request, response);
+                    
                }
                
                break;
        }
-        
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
+        rd.forward(request, response);
     }
 
-    protected boolean register(HttpServletRequest request, HttpServletResponse response, Users u, String url){
+    protected String register(HttpServletRequest request, HttpServletResponse response, Users u,String url){
         if(request.getParameter("pass").equals(request.getParameter("pass2"))){
                     u.setUserID(new Date().getTime());
                     // get by name
@@ -87,12 +88,12 @@ public class UsersServlet extends HttpServlet {
                             //out.println("alert('Đăng ký thành công');");  
                             //out.println("</script>");
                             url = "/login.jsp";
-                            RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
+                            /*RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
                             try {
                                 rd.forward(request, response);
                                 return true;
                             }
-                            catch(Exception e){}
+                            catch(Exception e){}*/
                         }
                         //đã tồn tại
                         else{
@@ -101,12 +102,12 @@ public class UsersServlet extends HttpServlet {
                             request.setAttribute("keptPass2",request.getParameter("pass2"));
                             request.setAttribute("error", "Email đã tồn tại!");
                             url = "/register.jsp";
-                            RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
+                            /*RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
                             try {
                                 rd.forward(request, response);
                                 return true;
                             }
-                            catch(Exception e){}
+                            catch(Exception e){}*/
                         }
                     }
                     catch(SQLException e){
@@ -120,13 +121,13 @@ public class UsersServlet extends HttpServlet {
                     request.setAttribute("keptPass1",request.getParameter("pass"));
                     request.setAttribute("keptPass2",request.getParameter("pass2"));
                     request.setAttribute("error", "Mật khẩu không khớp");  
-                    try {
+                    /*try {
                         request.getRequestDispatcher("register.jsp").forward(request,response);
                         return true;
                     }
-                    catch (Exception e){}
+                    catch (Exception e){}*/
                }
-        return false;
+        return url;
                
     }
 }

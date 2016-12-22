@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author NguyenIT
+ * @author duy tung dao
  */
 public class ProductDAOTest {
     
@@ -43,44 +43,40 @@ public class ProductDAOTest {
      * Test of getListProductByCategory method, of class ProductDAO.
      */
     @Test
-    public void testGetListProductByCategory() throws Exception {
-        System.out.println("getListProductByCategory");
-        long category_id = 0L;
+    public void testGetListProductByCategory() {
+        System.out.println("getListProductByCategory: Tra ve danh sach product theo category");
+        long category_id = 1;
         ProductDAO instance = new ProductDAO();
-        ArrayList<Product> expResult = null;
         ArrayList<Product> result = instance.getListProductByCategory(category_id);
-        assertEquals(expResult, result);
+        assertNotNull(result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Tra ve danh sach product theo category: Thanh cong");
     }
-
     /**
      * Test of getProduct method, of class ProductDAO.
      */
     @Test
-    public void testGetProduct() throws Exception {
-        System.out.println("getProduct");
-        long productID = 0L;
+    public void testGetProduct(){
+        System.out.println("getProduct: Tra ve product");
+        // ton tai product id = 1
+        long productID = 1;
         ProductDAO instance = new ProductDAO();
-        Product expResult = null;
         Product result = instance.getProduct(productID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotNull(result);
+        System.out.println("Tra ve product: Thanh cong");
     }
 
     /**
      * Test of getListProduct method, of class ProductDAO.
      */
     @Test
-    public void testGetListProduct() throws Exception {
-        System.out.println("getListProduct");
+    public void testGetListProduct() {
+        System.out.println("getListProduct: Lay danh sach product");
         ProductDAO instance = new ProductDAO();
-        ArrayList<Product> expResult = null;
         ArrayList<Product> result = instance.getListProduct();
-        assertEquals(expResult, result);
+        assertNotNull(result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Lay danh sach product: Thanh cong");
     }
     
 }

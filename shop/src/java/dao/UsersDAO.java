@@ -20,15 +20,18 @@ import model.Users;
  * @author NguyenIT
  */
 public class UsersDAO {
+    // thao tác trên bảng user
+    private Connection connection;
+    public UsersDAO(){
+        connection= DBConnect.getConnecttion();
+    }
     public boolean checkEmail (String email) throws SQLException{
-        Connection connection = DBConnect.getConnecttion();
         String sql = "SELECT * FROM user WHERE user_email = '" + email + "'";
         PreparedStatement ps;
         try {
             ps = connection.prepareCall(sql);
             ResultSet  rs = ps.executeQuery();
             while (rs.next()){
-                connection.close();
                 return true;
             }
         }
@@ -39,7 +42,6 @@ public class UsersDAO {
         
     }
     public boolean insertUser(Users  u){
-        Connection connection = DBConnect.getConnecttion();
         String sql = "INSERT INTO user VALUES(?,?,?,?)";
         try{
             PreparedStatement ps = connection.prepareCall(sql);
@@ -57,19 +59,17 @@ public class UsersDAO {
     }
     
     public Users Login(String email, String password){
-        Connection con = DBConnect.getConnecttion();
         String sql = "SELECT * FROM user WHERE user_email='"+email+
                 "' and user_pass='"+ password+"'";
         PreparedStatement ps;
         try{
-            ps=(PreparedStatement)con.prepareStatement(sql);
+            ps=(PreparedStatement)connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 Users u = new Users();
                 u.setUserID(rs.getLong("user_id"));
                 u.setUserEmail(rs.getString("user_email"));
                 u.setUserPass(rs.getString("user_pass"));
-                con.close();
                 return u;
             }
         }catch(SQLException e){

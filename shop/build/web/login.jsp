@@ -1,4 +1,4 @@
-    <%-- 
+<%-- 
     Document   : register
     Created on : Nov 8, 2016, 4:02:00 PM
     Author     : duy tung dao
@@ -56,28 +56,24 @@
 		<div class="row">
                     <div class="col-sm-4 col-sm-offset-1">
 			<div class="login-form"><!--login form-->
-                            <h2>Đăng nhập từ tài khoản của bạn</h2>
+                            <h2>Đăng nhập tài khoản của bạn</h2>
 				<form action="UsersServlet" method="POST">
                                     <% if(request.getParameter("error")!=null){ %>
                                     <div>
                                         <p style="color:red"><%=request.getParameter("error")%></p>
                                     </div>
                                     <%}%>
-                                    <input type="text" placeholder="User Name" name="email"/>
-                                    <input type="password" placeholder="Password" name="pass"/>
-
-                                    <span>
-					<input type="checkbox" class="checkbox"> 
-					Giữ tôi đăng nhập
-                                    </span>
+                                    <input type="text" placeholder="User Name" name="email" value="${keptEmail}"/>
+                                    <input type="password" placeholder="Password" name="pass" value="${keptPass}"/>
+                                    <div>
+                                        <p style="color:red">${error}</p>
+                                    </div>
+                                    
                                     <button type="submit" class="btn btn-default" value="Login" name="command">Đăng nhập</button>
+                                    <br>
                                     
-                                    
-                                    
+                                    <a href="register.jsp">Đăng ký</a> 
 				</form>
-                                <br>
-                                <a class="" href="register.jsp">Đăng ký một tài khoản mới</a>
-                                
 			</div><!--/login form-->
                     </div>
 		</div>

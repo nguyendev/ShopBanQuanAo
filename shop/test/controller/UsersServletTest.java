@@ -11,6 +11,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Cart;
 import model.Users;
 import org.junit.After;
 import org.junit.Before;
@@ -111,14 +112,16 @@ public class UsersServletTest {
     @Test 
     public void testLogin_success(){
         System.out.println("Tai khoan -> Dang nhap -> Dang nhap thanh cong");
-        HttpServletRequest request = mock(HttpServletRequest.class);       
+        HttpServletRequest request = mock(HttpServletRequest.class);   
+        HttpSession session = mock(HttpSession.class);
         when(request.getParameter("pass")).thenReturn("123456");
         when(request.getParameter("email")).thenReturn("nguyen.nah76@gmail.com");
+        when(request.getSession()).thenReturn(session);
         String url="";
         Users u = new Users();
         
         UsersServlet us = new UsersServlet();
-        String result = us.login(u, request);
+        String result = us.login(u, request, session);
         assertEquals("/index.jsp",result);
         System.out.println("Tai khoan -> Dang nhap -> Dang nhap thanh cong -> Thanh cong");
     }
@@ -127,12 +130,14 @@ public class UsersServletTest {
     public void testLogin_fail_wrongUsername(){
         System.out.println("Tai khoan -> Dang nhap -> Dang nhap that bai (Khong ton tai username)");
         HttpServletRequest request = mock(HttpServletRequest.class);       
+        HttpSession session = mock(HttpSession.class);
         when(request.getParameter("pass")).thenReturn("123456");
         when(request.getParameter("email")).thenReturn("nguyen.nah7678@gmail.com"); // user name khong ton tai
+        when(request.getSession()).thenReturn(session);
         Users u = new Users();
-        
         UsersServlet us = new UsersServlet();
-        String result = us.login(u, request);
+        session = request.getSession();
+        String result = us.login(u, request, session);
         assertEquals("/index.jsp",result);
         System.out.println("Tai khoan -> Dang nhap -> Dang nhap that bai (Khong ton tai username) -> Thanh cong ");
     }
@@ -141,12 +146,20 @@ public class UsersServletTest {
     public void testLogin_fail_wrongPassword(){
         System.out.println("Tai khoan -> Dang nhap -> Dang nhap that bai (Khong dung mat khau)");
         HttpServletRequest request = mock(HttpServletRequest.class);       
+        HttpSession session = mock(HttpSession.class);
         when(request.getParameter("pass")).thenReturn("123456");                    // mat khau khong dung
         when(request.getParameter("email")).thenReturn("nguyen.nah76@gmail.com");   // user name ton tai
-        Users u = new Users();
         
+        Users u = new Users();
+         when(request.getSession()).thenReturn(session);
+        session = request.getSession();
+        /*Cart cart = (Cart)session.getAttribute("cart");
+        if (cart == null){
+            cart = new Cart();
+            session.setAttribute("cart", cart);
+        }*/
         UsersServlet us = new UsersServlet();
-        String result = us.login(u, request);
+        String result = us.login(u, request, session);
         assertEquals("/index.jsp",result);
         System.out.println("Tai khoan -> Dang nhap -> Dang nhap that bai (Khong dung mat khau -> Thanh cong ");
     }

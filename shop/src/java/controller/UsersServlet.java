@@ -47,7 +47,7 @@ public class UsersServlet extends HttpServlet {
             case "Login":
                u= userDAO.Login(request.getParameter("email"), MD5.encryption(request.getParameter("pass")));
                // nếu tồn tại người dùng
-               url = login(u, request);
+               url = login(u, request, httpSession);
                break;
        }
         RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
@@ -114,11 +114,11 @@ public class UsersServlet extends HttpServlet {
         return url;
                
     }
-    protected String login(Users u, HttpServletRequest request){
+    protected String login(Users u, HttpServletRequest request, HttpSession httpSession){
         String url ="";
         // tồn tại người dùng
         if(u!=null){
-            /*httpSession.setAttribute("user", u);*/
+            httpSession.setAttribute("user", u);
             url = "/index.jsp";
         }
         // người dùng không tồn tại

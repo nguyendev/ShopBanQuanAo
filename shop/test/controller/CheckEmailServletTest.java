@@ -5,14 +5,18 @@
  */
 package controller;
 
+import dao.UsersDAO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Users;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -43,30 +47,30 @@ public class CheckEmailServletTest {
      * Test of doGet method, of class CheckEmailServlet.
      * @throws java.lang.Exception
      */
-    @Test
-    public void testDoGet() throws Exception {
-        System.out.println("doGet");
-        HttpServletRequest request = null;
-        HttpServletResponse response = null;
-        CheckEmailServlet instance = new CheckEmailServlet();
-        instance.doGet(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    // Điều kiện pass: email đã tồn tại trong database
+    @Test 
+    public void testWriteImage_exist(){
+        System.out.println("Kiem tra email -> Email da ton tai");
+        HttpServletRequest request = mock(HttpServletRequest.class);   
+        when(request.getParameter("username")).thenReturn("duytung95nb@gmail.com");
+        
+        CheckEmailServlet c = new CheckEmailServlet();
+        UsersDAO userDAO = new UsersDAO();
+        String result = c.writeImage(request,userDAO);
+        assertEquals("<img src=\"img/not-available.png\" />",result);
+        System.out.println("Kiem tra email -> Khong ton tai email -> Thanh cong");
     }
-
-    /**
-     * Test of doPost method, of class CheckEmailServlet.
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testDoPost() throws Exception {
-        System.out.println("doPost");
-        HttpServletRequest request = null;
-        HttpServletResponse response = null;
-        CheckEmailServlet instance = new CheckEmailServlet();
-        instance.doPost(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    // Điều kiện pass: email chưa tồn tại trong database
+    @Test 
+    public void testWriteImage_notExist(){
+        System.out.println("Kiem tra email -> Email chua ton tai");
+        HttpServletRequest request = mock(HttpServletRequest.class);   
+        when(request.getParameter("username")).thenReturn("duytung95nb12@gmail.com");
+        
+        CheckEmailServlet c = new CheckEmailServlet();
+        UsersDAO userDAO = new UsersDAO();
+        String result = c.writeImage(request,userDAO);
+        assertEquals("<img src=\"img/available.png\" />",result);
+        System.out.println("Kiem tra email -> Email chua ton tai -> Thanh cong");
     }
-    
 }

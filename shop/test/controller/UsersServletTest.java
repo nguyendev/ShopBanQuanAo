@@ -24,30 +24,7 @@ import static org.mockito.Mockito.*;
  * @author NguyenIT
  */
 public class UsersServletTest {
-    
-    @Mock
-    RequestDispatcher rd;
-
-    private ServletContext appContext;
-
-    /*@Test
-    public void testServlet() throws Exception {
-        HttpServletRequest request = mock(HttpServletRequest.class);       
-        HttpServletResponse response = mock(HttpServletResponse.class); 
-        HttpSession session = request.getSession(true);
-        when(request.getParameter("email")).thenReturn("nguyen.nah76@gmail.com");
-        when(request.getParameter("pass")).thenReturn("123456");
-        when(request.getParameter("command")).thenReturn("Login");
-        when(request.getSession()).thenReturn(session);
-        when(request.getRequestDispatcher("WEB-INF/index.jsp")).thenReturn(rd);
-        new UsersServlet().doPost(request, response);
-
-/*        verify(request, atLeast(1)).getParameter("username"); // only if you want to verify username was called...
-        */
-        
-        
-    /*}*/
-    
+    // Điều kiện pass: Chưa có account nào trong database có email đó, password trùng nhau
     @Test
     public void testRegister_sucess() {
         System.out.println("Tai khoan -> Dang ky -> Thanh cong");
@@ -67,8 +44,9 @@ public class UsersServletTest {
         assertEquals("/login.jsp",result);
         System.out.println("Tai khoan -> Dang ky -> Thanh cong");
     }
+    // Điều kiện pass: Đã tồn tại user có email đó trong database
     @Test
-    public void testRegister_Exits() {
+    public void testRegister_Exists() {
         System.out.println("Tai khoan -> Dang ky -> Ton tai");
         HttpServletRequest request = mock(HttpServletRequest.class);       
         HttpServletResponse response = mock(HttpServletResponse.class); 
@@ -84,7 +62,7 @@ public class UsersServletTest {
         assertEquals("/register.jsp",result);
         System.out.println("Tai khoan -> Dang ky -> Ton tai");
     }
-    
+    // Điều kiện pass: Mật xác chính và xác nhận mật khẩu không khớp
     @Test
     public void testRegister_passNotMatch() {
         System.out.println("Tai khoan -> Dang ky -> Mat khau khong dung");
@@ -101,5 +79,48 @@ public class UsersServletTest {
         String result = us.register(request, response, u, url);
         assertEquals("",result);
         System.out.println("Tai khoan -> Dang ky -> Mat khau khong dung -> Thanh cong");
+    }
+    // Điều kiện pass: đúng tên đăng nhập và mật khẩu
+    @Test 
+    public void testLogin_success(){
+        System.out.println("Tai khoan -> Dang nhap -> Dang nhap thanh cong");
+        HttpServletRequest request = mock(HttpServletRequest.class);       
+        when(request.getParameter("pass")).thenReturn("123456");
+        when(request.getParameter("email")).thenReturn("nguyen.nah76@gmail.com");
+        String url="";
+        Users u = new Users();
+        
+        UsersServlet us = new UsersServlet();
+        String result = us.login(u, request);
+        assertEquals("/index.jsp",result);
+        System.out.println("Tai khoan -> Dang nhap -> Dang nhap thanh cong -> Thanh cong");
+    }
+    // Điều kiện pass: sai tên đăng nhập
+    @Test 
+    public void testLogin_fail_wrongUsername(){
+        System.out.println("Tai khoan -> Dang nhap -> Dang nhap that bai (Khong ton tai username)");
+        HttpServletRequest request = mock(HttpServletRequest.class);       
+        when(request.getParameter("pass")).thenReturn("123456");
+        when(request.getParameter("email")).thenReturn("nguyen.nah7678@gmail.com"); // user name khong ton tai
+        Users u = new Users();
+        
+        UsersServlet us = new UsersServlet();
+        String result = us.login(u, request);
+        assertEquals("/index.jsp",result);
+        System.out.println("Tai khoan -> Dang nhap -> Dang nhap that bai (Khong ton tai username) -> Thanh cong ");
+    }
+    // Điều kiện pass: sai mật khẩu
+    @Test 
+    public void testLogin_fail_wrongPassword(){
+        System.out.println("Tai khoan -> Dang nhap -> Dang nhap that bai (Khong dung mat khau)");
+        HttpServletRequest request = mock(HttpServletRequest.class);       
+        when(request.getParameter("pass")).thenReturn("123456");                    // mat khau khong dung
+        when(request.getParameter("email")).thenReturn("nguyen.nah76@gmail.com");   // user name ton tai
+        Users u = new Users();
+        
+        UsersServlet us = new UsersServlet();
+        String result = us.login(u, request);
+        assertEquals("/index.jsp",result);
+        System.out.println("Tai khoan -> Dang nhap -> Dang nhap that bai (Khong dung mat khau -> Thanh cong ");
     }
 }

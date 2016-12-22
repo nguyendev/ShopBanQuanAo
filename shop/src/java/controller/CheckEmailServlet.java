@@ -26,16 +26,26 @@ public class CheckEmailServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response){
         try{
+            response.getWriter().write(writeImage(request,usersDAO));
+        }catch(IOException e){
+            
+        }
+    }
+    protected String writeImage(HttpServletRequest request,UsersDAO usersDAO){
+        String s = "";
+        try{
+            // user name đã có
             if (usersDAO.checkEmail(request.getParameter("username"))) {
-                response.getWriter().write("<img src=\"img/not-available.png\" />");
+                s = "<img src=\"img/not-available.png\" />";
             } else {
-                response.getWriter().write("<img src=\"img/available.png\" />");
+                s = "<img src=\"img/available.png\" />";
             }
         }
         catch(SQLException e){
+            
         }
+        return s;
     }
 }

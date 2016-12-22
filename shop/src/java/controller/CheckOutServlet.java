@@ -88,7 +88,7 @@ public class CheckOutServlet extends HttpServlet {
             return true;
         } 
         
-        catch (SQLException e) {
+        catch (Exception e) {
         }
         return false;
     }

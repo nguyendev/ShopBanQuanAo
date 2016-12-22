@@ -42,28 +42,12 @@ public class UsersServlet extends HttpServlet {
        switch(command){
            case "Register":
                // so sánh 2 ô mật khẩu
-               register(request, response, u, url);
-                
+               url = register(request, response, u, url);
                break;
             case "Login":
                u= userDAO.Login(request.getParameter("email"), MD5.encryption(request.getParameter("pass")));
                // nếu tồn tại người dùng
-               if(u!=null){
-                    /*httpSession.setAttribute("user", u);*/
-                    url = "/index.jsp";
-                    response.sendRedirect("/index.jsp");
-                    /*RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
-                    rd.forward(request, response);*/
-               }
-               // người dùng không tồn tại
-               else{
-                    request.setAttribute("keptEmail",request.getParameter("email"));  
-                    request.setAttribute("keptPass",request.getParameter("pass"));
-                    request.setAttribute("error", "Sai tên người dùng hoặc mật khẩu!");
-                    url = "/login.jsp";
-                    
-               }
-               
+               url = login(u, request);
                break;
        }
         RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
@@ -129,5 +113,21 @@ public class UsersServlet extends HttpServlet {
                }
         return url;
                
+    }
+    protected String login(Users u, HttpServletRequest request){
+        String url ="";
+        // tồn tại người dùng
+        if(u!=null){
+            /*httpSession.setAttribute("user", u);*/
+            url = "/index.jsp";
+        }
+        // người dùng không tồn tại
+        else{
+            request.setAttribute("keptEmail",request.getParameter("email"));  
+            request.setAttribute("keptPass",request.getParameter("pass"));
+            request.setAttribute("error", "Sai tên người dùng hoặc mật khẩu!");
+            url = "/login.jsp";
+        }
+        return url;
     }
 }

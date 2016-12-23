@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.BillDAO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import model.Cart;
@@ -73,6 +74,9 @@ public class CheckOutServletTest {
         /*result = instance.InsertBill(request, null);
         assertEquals(expResult, result);*/
         // TODO review the generated test code and remove the default call to fail.
+        BillDAO billDao = new BillDAO();
+        billDao.deleteBillUser(1000);
+        
         System.out.println("Thanh toan -> them -> thanh cong");
     }
     

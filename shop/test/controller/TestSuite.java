@@ -14,17 +14,12 @@ package controller;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
-
-/**
- *
- * @author NguyenIT
- */
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import tools.MD5Test;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -32,6 +27,7 @@ import org.junit.runners.Suite;
   CheckEmailServletTest.class,
   CheckOutServletTest.class,
   UsersServletTest.class,
+  MD5Test.class,
 })
 
 public class TestSuite {

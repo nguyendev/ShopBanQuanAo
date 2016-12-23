@@ -90,6 +90,22 @@ public class BillDAO {
         }
         return false;
     }
+    public boolean deleteBillUser(int id) {
+        String sql2 = "DELETE from bill_detail where bill_id IN (sELECT BILL WHERE USER_ID = " + id + ")"; 
+        String sql = "DELETE from bill where user_id = "+ id ;
+        try{
+            PreparedStatement ps = connection.prepareCall(sql2);
+            ps.executeUpdate();
+            ps = connection.prepareCall(sql);
+            ps.executeUpdate();
+            return true;
+        }
+        catch(SQLException e)
+        {
+            e.getStackTrace();
+        }
+        return false;
+    }
     /*public int count(){
         String sql = "SELECT COUNT(BillID) FROM bill";  
         try{

@@ -48,6 +48,7 @@ public class CartServlet extends HttpServlet {
             switch(command){
                 case "plus":
                     Plus(request, response, cart);
+                break;
                 case "remove":
                     Remove(cart,productid);
                     break;
@@ -69,7 +70,6 @@ public class CartServlet extends HttpServlet {
     }// </editor-fold>
     public boolean Plus(HttpServletRequest request, HttpServletResponse response, Cart cart) {
     
-        HttpSession session = request.getSession();
         String productID = request.getParameter("productID");
         Long productid = Long.parseLong(productID);
         try{

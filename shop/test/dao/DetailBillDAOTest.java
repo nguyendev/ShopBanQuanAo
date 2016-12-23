@@ -89,7 +89,7 @@ public class DetailBillDAOTest {
         
         DetailBillDAO instance = new DetailBillDAO();
         ArrayList<BillDetail>  result = instance.getBillDetail();
-        assertNotNull(result);
+        assertEquals(0,result.size());
         System.out.println("Chi tiet hoa don -> Lay -> Thanh cong ");
     }
     

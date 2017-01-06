@@ -70,8 +70,7 @@ public class UsersDAO {
         return false;
     }
     public boolean deleteUserFromEmail(String  email){
-        String sql = "DELETE FROM user WHERE user_email ="
-                +  email;
+        String sql = "DELETE FROM user WHERE user_email = "+"'"+email+"'" ;
         try{
             PreparedStatement ps = connection.prepareCall(sql);
             ps.execute();

@@ -59,13 +59,14 @@
                             <h2>Đăng nhập tài khoản của bạn</h2>
 				<form action="UsersServlet" method="POST">
                                     <% if(request.getParameter("error")!=null){ %>
-                                    <div id="error" style="color:red"><%=request.getParameter("error")%>
+                                    <div> 
+                                        <p style="color:red"><%=request.getParameter("error")%></p>
                                     </div>
                                     <%}%>
                                     <input type="text" placeholder="User Name" name="email" value="${keptEmail}"/>
                                     <input type="password" placeholder="Password" name="pass" value="${keptPass}"/>
                                     <div>
-                                        <p style="color:red">${error}</p>
+                                        <p id="errormess" style="color:red">${error}</p>
                                     </div>
                                     
                                     <button type="submit" class="btn btn-default" value="Login" name="command">Đăng nhập</button>

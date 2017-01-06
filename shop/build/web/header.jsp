@@ -111,7 +111,7 @@
 										
                                                             <li><a id="cart" href="cart.jsp"><i class="fa fa-shopping-cart"></i> Giỏ hàng <span  style="color:red"> <b id="countItem"><%=cart.countItem()%></b></span></a></li>
                                                             <%if(users!=null){%>
-                                                                    <li><a href=""><%=users.getUserEmail()%></a>
+                                                            <li><a id="getUserEmail" href=""><%=users.getUserEmail()%></a>
                                                                     </li>
                                                                 <%} else{%>
                                                                     <li><a href="login.jsp"><i class="fa fa-lock"></i>Đăng nhập</a></li>

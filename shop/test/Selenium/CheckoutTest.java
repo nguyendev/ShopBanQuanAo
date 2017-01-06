@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import tools.LibraryClass;
 
 /**
  *
@@ -24,13 +25,14 @@ public class CheckoutTest {
     
     @Before
     public void setUp(){
-        System.setProperty("webdriver.chrome.driver","F:\\HK VII\\Software Testing\\chromedriver_win32\\chromedriver.exe");
+        System.out.println("------------- Bat dau test -----------------");
+        System.setProperty("webdriver.chrome.driver",LibraryClass.driverChrome);
         // Khởi tạo trình duyệt Firefox
         driver = new ChromeDriver();
     }
     @Test
     public void Test04_CheckoutSuccess() throws Exception {
-        driver.get("http://localhost:8080/shop/login.jsp");
+        driver.get(LibraryClass.loginUrl);
         Thread.sleep(2000);
 
         /*Dang nhap*/
@@ -68,7 +70,7 @@ public class CheckoutTest {
     }
     @Test
     public void Test04_CannotCheckout_NoProductPicked() throws Exception {
-        driver.get("http://localhost:8080/shop/login.jsp");
+        driver.get(LibraryClass.loginUrl);
         Thread.sleep(2000);
 
         /*Dang nhap*/
@@ -88,7 +90,7 @@ public class CheckoutTest {
     
     @Test
     public void Test04_CannotCheckout_NoEmailInfo() throws Exception {
-        driver.get("http://localhost:8080/shop/login.jsp");
+        driver.get(LibraryClass.loginUrl);
         Thread.sleep(2000);
 
         /*Dang nhap*/
@@ -125,7 +127,7 @@ public class CheckoutTest {
     
     @Test
     public void Test04_CannotCheckout_NoFullnameInfo() throws Exception {
-        driver.get("http://localhost:8080/shop/login.jsp");
+        driver.get(LibraryClass.loginUrl);
         Thread.sleep(2000);
 
         /*Dang nhap*/
@@ -162,7 +164,7 @@ public class CheckoutTest {
     
     @Test
     public void Test04_CannotCheckout_NoAddress1Info() throws Exception {
-        driver.get("http://localhost:8080/shop/login.jsp");
+        driver.get(LibraryClass.loginUrl);
         Thread.sleep(2000);
 
         /*Dang nhap*/
@@ -199,7 +201,7 @@ public class CheckoutTest {
     
     @Test
     public void Test04_CannotCheckout_NoPhoneNumber() throws Exception {
-        driver.get("http://localhost:8080/shop/login.jsp");
+        driver.get(LibraryClass.loginUrl);
         Thread.sleep(2000);
 
         /*Dang nhap*/
@@ -235,6 +237,7 @@ public class CheckoutTest {
     }
     @After
     public void tearDown() {
+        System.out.println("------------- Ket thuc test -----------------");
         driver.quit();
     }
 }

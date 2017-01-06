@@ -54,7 +54,7 @@
                                                 %>
 						<tr>
 							<td class="cart_product">
-								<a href="single.jsp?productID=<%=list.getValue().getProduct().getProductID()%>"><img src=<%=list.getValue().getProduct().getProductImage()%> height="42" width="42" alt=""></a>
+								<a id="<%=list.getValue().getProduct().getProductID()%>" href="single.jsp?productID=<%=list.getValue().getProduct().getProductID()%>"><img src=<%=list.getValue().getProduct().getProductImage()%> height="42" width="42" alt=""></a>
 							</td>
 							<td class="cart_description">
 								<h4><a href="single.jsp?productID=<%=list.getValue().getProduct().getProductID()%>"><%=list.getValue().getProduct().getProductName()%></a></h4>
@@ -74,7 +74,7 @@
 								<p class="cart_total_price"><%=list.getValue().getQuantity() * list.getValue().getProduct().getProductPrice() %></p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" href="CartServlet?command=remove&productID=<%=list.getValue().getProduct().getProductID()%>"><i class="fa fa-times"></i></a>
+								<a class="cart_quantity_delete" id="<%=list.getValue().getProduct().getProductID()%>" href="CartServlet?command=remove&productID=<%=list.getValue().getProduct().getProductID()%>"><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
                                                 

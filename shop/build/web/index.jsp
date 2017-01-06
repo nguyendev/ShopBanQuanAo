@@ -77,7 +77,7 @@
 										<div class="product-overlay">
 											<div class="overlay-content">
 												<h2><%=p.getProductPrice()%>VNĐ</h2>
-												<p><%= p.getProductName()%></p>
+												<p id="<%=p.getProductID()%>" name="nameProduct"><%= p.getProductName()%></p>
                                                                                                 <a id="<%=p.getProductID()%>" href="CartServlet?command=plus&productID=<%=p.getProductID()%>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 											</div>
 										</div>

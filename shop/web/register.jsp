@@ -60,7 +60,7 @@
                                                         <span id='message'></span>
                                                 </div>
                                                 <div>
-                                                    <p style="color:red">${error}</p>
+                                                    <p id="error" style="color:red">${error}</p>
                                                 </div>
                                                 <input type="submit" value="Register" name="command"  id="RegisterButton"> 
                                         </form>
